@@ -6,9 +6,9 @@ Feature: View overview order to pay
 
   Scenario Outline: When 1 duplicate ordered, the details of the order are shown
     Given the order of a duplicate for <education> in the academic year <year> at campus <campus>
-    And the total cost of <price> euros
+    And the total cost of <price> euro
     When I ask the detail of the order
-    Then the details of the duplicate(s) are given
+    Then the details of the duplicate are given
     And the total cost is given
 
     Examples:
@@ -18,7 +18,7 @@ Feature: View overview order to pay
   Scenario Outline: When two different duplicates ordered, the details of the order are shown
     Given the order of a first duplicate for <education1> in the academic year <year1> at campus <campus1>
     Given the order of a second duplicate for <education2> in the academic year <year2> at campus <campus2>
-    And the total cost of <price> euros
+    And the total cost of <price> euro
     When I ask the detail of the order
     Then the details of the duplicate(s) are given
     And the total cost is given

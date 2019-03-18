@@ -6,7 +6,7 @@ Feature: View payment summary
 
   Scenario Outline: the payment details of a payment for 1 duplicate are given
     Given the order of a duplicate for <education> in the academic year <year> at campus <campus>
-    And the total cost of <price> euros
+    And the total cost of <price> euro
     When I choose to pay for the order
     Then a payment summary is given with the following data: the merchant <merchant>, the description <description>, the reference <reference> and the amount <amount>
     And the payment options are given: Visa/Mastercard, Bancontact or iDeal
@@ -18,7 +18,7 @@ Feature: View payment summary
   Scenario Outline: the payment details of a payment for 2 duplicates are given
     Given the order of a first duplicate for <education1> in the academic year <year1> at campus <campus1>
     And the order of a second duplicate for <education2> in the academic year <year2> at campus <campus2>
-    And the total cost of <price> euros
+    And the total cost of <price> euro
     When I choose to pay for the order
     Then a payment summary is given with the following data: the merchant <merchant>, the description <description>, the reference <reference> and the amount <amount>
     And the payment options are given: Visa/Mastercard, Bancontact or iDeal

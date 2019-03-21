@@ -9,7 +9,7 @@ Feature: View payment summary
     And the total cost of <price> euro
     When I choose to pay for the order
     Then a payment summary is given with the following data: the merchant <merchant>, the description <description>, the reference <reference> and the amount <amount>
-    And the payment options are given: Visa/Mastercard, Bancontact or iDeal
+    And the payment options are given: Visa/Mastercard or Bancontact
 
     Examples:
     | education     | year      | campus  | price | merchant  | description             | reference       | amount  |
@@ -21,7 +21,7 @@ Feature: View payment summary
     And the total cost of <price> euro
     When I choose to pay for the order
     Then a payment summary is given with the following data: the merchant <merchant>, the description <description>, the reference <reference> and the amount <amount>
-    And the payment options are given: Visa/Mastercard, Bancontact or iDeal
+    And the payment options are given: Visa/Mastercard or Bancontact
 
     Examples:
       | education1  | year1     | campus1 | education2    | year2     | campus2 | price | merchant  | description               | reference       | amount  |

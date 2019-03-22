@@ -12,8 +12,8 @@ Feature: View payment summary
     And the payment options are given: Visa/Mastercard or Bancontact
 
     Examples:
-    | education     | year      | campus  | price | merchant  | description             | reference       | amount  |
-    | PB Chemistry  | 2017-2018 | Leuven  | 15.00 | UCLL      | Duplicates Mieke Kemme  | 123/1223/12233  | 15.00   |
+    | education     | year      | campus  | price | merchant  | description               | reference       | amount  |
+    | PB Chemistry  | 2017-2018 | Leuven  | 15.00 | UCLL      | Duplicates Elke Steegmans  | 123/1223/12233  | 15.00   |
 
   Scenario Outline: the payment details of a payment for 2 duplicates are given
     Given the order of a first duplicate for <education1> in the academic year <year1> at campus <campus1>
@@ -24,6 +24,6 @@ Feature: View payment summary
     And the payment options are given: Visa/Mastercard or Bancontact
 
     Examples:
-      | education1  | year1     | campus1 | education2    | year2     | campus2 | price | merchant  | description               | reference       | amount  |
-      | PB TI       | 2011-2012 | Leuven  | PB Chemistry  | 2016-2017 | Limburg | 30.00 | UCLL      | Duplicates Elke Steegmans | 123/1223/12234  | 30.00   |
-      | PB TI       | 1999-2000 | Leuven  | PB TI         | 1999-2000 | Leuven  | 30.00 | UCLL      | Duplicates Rudi Swennen   | 123/1223/12235  | 30.00   |
+      | education1  | year1     | campus1 | education2    | year2     | campus2 | price | merchant  | description             | reference       | amount  |
+      | PB TI       | 2011-2012 | Leuven  | PB Chemistry  | 2016-2017 | Limburg | 30.00 | UCLL      | Duplicates Mieke Kemme  | 123/1223/12234  | 30.00   |
+      | PB TI       | 1999-2000 | Leuven  | PB TI         | 1999-2000 | Leuven  | 30.00 | UCLL      | Duplicates Rudi Swennen | 123/1223/12235  | 30.00   |

@@ -1,4 +1,4 @@
-Feature: View overview order to pay with address
+Feature: View details order to pay
 
   As a user
   I can get an overview of my order
@@ -6,7 +6,7 @@ Feature: View overview order to pay with address
 
   Scenario: When 1 duplicate ordered, the details of the order are shown
     Given the order of a duplicate for PB Chemistry in the academic year 2017-2018 at campus Leuven
-    And to be sent to the address Elke Steegmans, Lintsesteenweg 81, 2540 Hove, Belgium
+    And to be sent to the address: Elke Steegmans, Lintsesteenweg 81, 2540 Hove, Belgium
     And the total cost of 15.00 euro
     When I ask the detail of the order
     Then the details of the duplicate are given

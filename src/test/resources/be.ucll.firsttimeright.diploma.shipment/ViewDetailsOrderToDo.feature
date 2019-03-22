@@ -11,13 +11,13 @@ Feature: Details of order to do
     Then the date is <date>
     And the full name is <name>
     And the address is <address>
-    And the birthdate is <birthdate>
+    And the birth date is <birthdate>
     And the diploma is <diploma>
     And the status payed is OK
 
     Examples:
-    | name            | date        | address                       | birthdate   | diploma                   |
-    | Elke Steegmans  | 01-03-2019  | Lintsesteenweg 81 - 2540 Hove | 28/01/1978  | PB TI, 2017-2018, Leuven  |
+    | name            | date        | address                                 | birthdate   | diploma                   |
+    | Elke Steegmans  | 01-03-2019  | Lintsesteenweg 81 - 2540 Hove - Belgium | 28/01/1978  | PB TI, 2017-2018, Leuven  |
 
   Scenario Outline: Details of an order with two different duplicates to print and to send
     Given a payed order for <name> on <date>

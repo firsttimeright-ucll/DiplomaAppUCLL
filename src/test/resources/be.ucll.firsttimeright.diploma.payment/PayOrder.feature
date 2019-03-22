@@ -22,8 +22,8 @@ Feature: Pay order
     Then the order is payed
 
     Examples:
-      | merchant  | description            | reference       | amount  | name            | cardnumber            | month | year  |
-      | UCLL      | Duplicates Mieke Kemme | 123/1223/12234  | 30.00   | Elke Steegmans  | 6703 0000 0000 0000 3 | 09    | 2021  |
+      | merchant  | description            | reference       | amount  | name         | cardnumber            | month | year  |
+      | UCLL      | Duplicates Mieke Kemme | 123/1223/12234  | 30.00   | Mieke Kemme  | 6703 0000 0000 0000 3 | 09    | 2021  |
 
   Scenario Outline: pay the order choosing for Visa/Mastercard
     Given a payment summary with the following data: the merchant <merchant>, the description <description>, the reference <reference> and the amount <amount>

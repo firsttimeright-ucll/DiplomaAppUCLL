@@ -1,4 +1,4 @@
-Feature: View overview payed order
+Feature: View details payed order
 
   As a user
   I can get an overview of my order
@@ -13,8 +13,8 @@ Feature: View overview payed order
     And the payment method is given "Payed with <paymentmethod>"
 
     Examples:
-      | education     | year      | campus  | price | paymentmethod   |
-      | PB Chemistry  | 2017-2018 | Leuven  | 15.00 | Bancontact app  |
+      | education     | year      | campus  | price | paymentmethod |
+      | PB Chemistry  | 2017-2018 | Leuven  | 15.00 | Bancontact    |
 
   Scenario Outline: When two different duplicates ordered, the details of the order are shown
     Given the order of a first duplicate for <education1> in the academic year <year1> at campus <campus1>

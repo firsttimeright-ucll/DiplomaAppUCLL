@@ -1,4 +1,4 @@
-Feature: Change status of order to done
+Feature: Print order
 
   As a user
   I can print and send the duplicate(s) of an order

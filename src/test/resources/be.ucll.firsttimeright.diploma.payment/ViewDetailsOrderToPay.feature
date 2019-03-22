@@ -1,4 +1,4 @@
-Feature: View overview order to pay
+Feature: View details order to pay
 
   As a user
   I can get an overview of my order

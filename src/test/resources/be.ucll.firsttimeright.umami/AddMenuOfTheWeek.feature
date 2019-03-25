@@ -1,18 +1,71 @@
-Feature: Add menu of the week
+Feature: New menu of the week
   As a planner
   I can create a menu for the week
   In order to be plan the week ahead
 
   Scenario: can have day-menus for monday till friday
-    Given 5 different menus of the day
-    When I register a menu of the week
-    And I add each menu of the day to a different weekday
-    Then the menu is registered
+    Given I have following menus of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | 2  | Ministrone     | Vol au vent               | Chili sin carne           |
+      | 3  | Brocolli soup  | Leaks and Ham             | Veggie lasagna            |
+      | 4  | Carrot soup    | Steak and chips           | Falafel in Tomato sauce   |
+      | 5  | Asparagus soup | MeatBalls in Tomato sauce | Mushroom burger and chips |
+    When I want to create a menu of the week
+    And I use each menu of the day for a different weekday:
+      | menu | day       |
+      | 1    | Monday    |
+      | 2    | Tuesday   |
+      | 3    | Wednesday |
+      | 4    | Thursday  |
+      | 5    | Friday    |
+    Then the menu of the week is registered with the given menus of the day:
+      | day       | soup           | dishOfTheDay              | veggie                    |
+      | Monday    | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | Tuesday   | Ministrone     | Vol au vent               | Chili sin carne           |
+      | Wednesday | Brocolli soup  | Leaks and Ham             | Veggie lasagna            |
+      | Thursday  | Carrot soup    | Steak and chips           | Falafel in Tomato sauce   |
+      | Friday    | Asparagus soup | MeatBalls in Tomato sauce | Mushroom burger and chips |
+
+
+  Scenario: does not need to have 5 day-menus
+    Given I have following menus of the day:
+      | nr | soup        | dishOfTheDay    | veggie          |
+      | 1  | Tomato soup | Pasta Carbonara | Fish and chips  |
+      | 2  | Ministrone  | Vol au vent     | Chili sin carne |
+    When I want to create a menu of the week
+    And I use each menu of the day for a different weekday:
+      | menu | day       |
+      | 1    | Monday    |
+      | 2    | Wednesday |
+    And I add no menus for the rest of the weekdays:
+      | menu | day      |
+      |      | Tuesday  |
+      |      | Thursday |
+      |      | Friday   |
+    Then the menu of the week is registered with the given menus of the day:
+      | day       | soup        | dishOfTheDay    | veggie          |
+      | Monday    | Tomato soup | Pasta Carbonara | Fish and chips  |
+      | Wednesday | Ministrone  | Vol au vent     | Chili sin carne |
+
+
+  Scenario: should have at least 1 day-menu
+    When I want to create a menu of the week
+    And I have no menus of the day:
+      | menu | day       |
+      |      | Monday    |
+      |      | Tuesday   |
+      |      | Wednesday |
+      |      | Thursday  |
+      |      | Friday    |
+    Then an error message is given
+    And the menu is not registered
+
 
   Scenario Outline: can not have day-menus for saturday and sundays
-    Given 1 menu of the day
-    When I register a menu of the week
-    And I add the menu of the day for "<day>"
+    Given I have some menu of the day
+    When I want to create a menu of the week
+    And I use this menu of the day for "<day>"
     Then an error message is given
     And the menu is not registered
 
@@ -21,68 +74,91 @@ Feature: Add menu of the week
       | Saturday |
       | Sunday   |
 
+
   Scenario: can not have more than 1 day-menu on the same day
-    Given 2 different menus of the day
-    When I register a menu of the week
-    And I add both menus of the day for "Friday"
+    Given I have following menus of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | 2  | Ministrone     | Vol au vent               | Chili sin carne           |
+    When I want to create a menu of the week
+    And I use both menus of the day for Friday:
+      | menu | day       |
+      | 1    | Friday    |
+      | 2    | Friday   |
     Then an error message is given
     And the menu is not registered
 
-  Scenario: all days must fall in the same week
-    Given 2 different menus of the day
-    When I register a menu of the week
-    And I add a menu of the day for coming "Friday"
-    And I add a menu for the "Monday" after
+
+  Scenario: can only have days that fall in the same week
+    Given I have following menus of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | 2  | Ministrone     | Vol au vent               | Chili sin carne           |
+    When I want to create a menu of the week
+    And I use the 1st menu of the day for coming "Friday"
+    And I use the 2nd menu of the day for the "Monday" after
     Then an error message is given
     And the menu is not registered
 
-  Scenario: should have at least 1 day-menu
-    When I register a menu of the week
-    And I add np menu of the day
-    Then an error message is given
-    And the menu is not registered
-
-  Scenario: does not need to have 5 day-menus
-    Given 2 different menus of the day
-    When I register a menu of the week
-    And I add one menu of the day for coming "Monday"
-    And I add the other menu of the day for the "Wednesday" after
-    Then the menu is registered
 
   Scenario: cannot contain the same day-menu twice
-    Given 1 menu of the day
-    When I register a menu of the week
-    And I add the menu of the day for coming "Monday"
-    And I add the menu of the day for the "Friday" after
+    Given I have following menu of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+    When I want to create a menu of the week
+    And I use this menus for 2 different weekdays:
+      | menu | day       |
+      | 1    | Monday    |
+      | 1    | Tuesday   |
     Then an error message is given
     And the menu is not registered
+
 
   Scenario: can contain the same dish twice
-    Given 2 menus of the day with "Fish and Chips"
-    When I register a menu of the week
-    And I add one menu of the day for coming "Monday"
-    And I add the other menu of the day for the "Wednesday" after
-    Then the menu is registered
+    Given I have following menus of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | 2  | Ministrone     | Fish and chips            | Chili sin carne           |
+    When I want to create a menu of the week
+    And I use each menu of the day for a different weekday:
+      | menu | day       |
+      | 1    | Monday    |
+      | 2    | Wednesday |
+    Then the menu of the week is registered with the given menus of the day:
+      | day       | soup        | dishOfTheDay    | veggie          |
+      | Monday    | Tomato soup | Pasta Carbonara | Fish and chips  |
+      | Wednesday | Ministrone  | Fish and chips   | Chili sin carne |
+
 
   Scenario: cannot contain the same dish more than twice
-    Given 3 menus of the day with "Fish and Chips"
-    When I register a menu of the week
-    And I add one menu of the day for coming "Monday"
-    And I add another menu of the day for the "Wednesday" after
-    And I add the third menu of the day for the "Friday" after
+    Given I have following menus of the day:
+      | nr | soup           | dishOfTheDay              | veggie                    |
+      | 1  | Tomato soup    | Pasta Carbonara           | Fish and chips            |
+      | 2  | Ministrone     | Fish and chips            | Chili sin carne           |
+      | 3  | Brocolli soup  | Leaks and Ham             | Fish and chips            |
+    When I want to create a menu of the week
+    And I use each menu of the day for a different weekday:
+      | menu | day       |
+      | 1    | Monday    |
+      | 2    | Wednesday |
+      | 3    | Friday    |
     Then an error message is given
     And the menu is not registered
 
-  Scenario: the start date of the menu is the earliest day with a menu
-    Given a menu of the week
-    And the menu has a menu of the day for coming "Tuesday"
-    And the menu has a menu of the day for the "Thursday" after
-    When I ask for the start date of the week
-    Then the "Tuesday" is returned
 
-  Scenario: the end date of the menu is the latest day with a menu
-    Given a menu of the week
-    And the menu has a menu of the day for coming "Tuesday"
-    And the menu has a menu of the day for the "Thursday" after
+  Scenario: has as  start date the earliest day with a menu
+    Given I have following menu of the week:
+      | day      | soup        | dishOfTheDay    | veggie          |
+      | Tuesday  | Tomato soup | Pasta Carbonara | Fish and chips  |
+      | Thursday | Ministrone  | Fish and chip   | Chili sin carne |
+    When I ask for the start date of the week
+    Then "Tuesday" is returned
+
+
+  Scenario: has as end date the latest day with a menu
+    Given I have following menu of the week:
+      | day      | soup        | dishOfTheDay    | veggie          |
+      | Tuesday  | Tomato soup | Pasta Carbonara | Fish and chips  |
+      | Thursday | Ministrone  | Fish and chips   | Chili sin carne |
     When I ask for the end date of the week
-    Then the "Thursday" is returned
+    Then "Thursday" is returned

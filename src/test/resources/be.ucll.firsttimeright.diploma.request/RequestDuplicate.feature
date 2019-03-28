@@ -26,4 +26,4 @@ Feature: Request duplicate for diploma
     And for the education "PB TI"
     And for the campus "Leuven"
     When I request for the duplicate
-    Then the message "You need to sign up or log in  first" is given
+    Then the message "You need to sign up or log in first" is given

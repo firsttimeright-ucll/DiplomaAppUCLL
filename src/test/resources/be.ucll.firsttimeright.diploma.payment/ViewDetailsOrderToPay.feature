@@ -4,7 +4,7 @@ Feature: View details order to pay
   I can get an overview of my order
   in order to check it and pay for it
 
-  Scenario: When one duplicate ordered, the details of the order are shown
+  Scenario: When 1 duplicate ordered, the details of the order are shown
     Given the order of a duplicate for "PB Chemistry" in the academic year "2017-2018" at campus "Leuven"
     And the total cost of 15.00 euro
     When I ask for the details of the order
@@ -24,7 +24,7 @@ Feature: View details order to pay
       | PB Chemistry  | 2016-2017 | Limburg |
     And the total cost of 30.00 is given
 
-  Scenario: When two duplicates of the same diploma are ordered, the details of the order are shown
+  Scenario: When 2 duplicates are ordered, the details of the order are shown
     Given an order for the following duplicates:
       | education     | year      | campus  |
       | PB TI         | 1999-2000 | Leuven  |

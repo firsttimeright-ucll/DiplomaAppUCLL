@@ -2,9 +2,9 @@ Feature: View details payed order
 
   As a user
   I can get an overview of my order
-  in order to dubble check it or to print it
+  in order to check it
 
-  Scenario: When 1 duplicate ordered, the details of the payed order
+  Scenario: When an order for 1 duplicate is payed, the details of this payed order are given
     Given the order of 1 duplicate with the following details:
       | education     | year      | campus  |
       | PB Chemistry  | 2017-2018 | Leuven  |
@@ -17,7 +17,7 @@ Feature: View details payed order
     And the total cost is given: 15.00 euro
     And the payment method is given: "Payed with Bancontact"
 
-  Scenario: When two different duplicates ordered, the details of the order are shown
+  Scenario: When an order for 2 duplicates is payed, the details of this payed order are given
     Given the order of two duplicates with the following details:
       | education     | year      | campus  |
       | PB TI         | 2011-2012 | Leuven  |

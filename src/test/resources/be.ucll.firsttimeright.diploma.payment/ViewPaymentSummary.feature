@@ -4,7 +4,7 @@ Feature: View payment summary
   I can ask for my payment summary
   in order to see the details of my payment and to choose the payment method
 
-  Scenario: the payment details of a payment for 1 duplicate are given
+  Scenario: the payment summary of 1 duplicate is given with the payment options to choose from
     Given the order of a duplicate with the following details:
       | education     | year      | campus  |
       | PB Chemistry  | 2017-2018 | Leuven  |
@@ -12,13 +12,13 @@ Feature: View payment summary
     When I choose to pay for the order
     Then a payment summary is given with the following data:
       | merchant  | description               | reference       | amount  |
-      | UCLL      | Duplicates Elke Steegmans  | 123/1223/12233  | 15.00   |
+      | UCLL      | Duplicates Elke Steegmans | 123/1223/12233  | 15.00   |
     And the following payment options are given:
       | payment         |
       | Visa/Mastercard |
       | Bancontact      |
 
-  Scenario: the payment details of a payment for 2 duplicates are given
+  Scenario: the payment summary of 2 duplicates is given with the payment options to choose from
     Given an order for the following duplicates:
       | education     | year      | campus  |
       | PB TI         | 2011-2012 | Leuven  |

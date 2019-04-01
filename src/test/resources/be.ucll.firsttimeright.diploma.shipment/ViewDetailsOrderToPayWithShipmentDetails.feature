@@ -32,7 +32,7 @@ Feature: View details order to pay
       | Mieke Kemme | Parkstraat 99 | 3000 Leuven | Belgium   |
     And the total cost of 30.00 is given
 
-  Scenario: When two duplicates of the same diploma are ordered, the details of the order are shown
+  Scenario: When 2 duplicates ordered, the details of the order are shown
     Given an order for the following duplicates:
       | education     | year      | campus  |
       | PB TI         | 1999-2000 | Leuven  |

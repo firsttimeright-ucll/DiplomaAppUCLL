@@ -4,7 +4,7 @@ Feature: Details of order done
   I can ask for the details of an order with status done
   In order to check the details of this order when needed
 
-  Scenario: Details of an order with status done
+  Scenario: The details of an order with status done are given
     Given an order done for:
       | name            | date       |
       | Greetje Jongen  | 29-12-2018 |

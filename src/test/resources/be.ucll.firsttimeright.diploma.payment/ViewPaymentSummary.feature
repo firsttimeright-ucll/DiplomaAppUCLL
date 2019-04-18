@@ -9,14 +9,14 @@ Feature: View payment summary
     When I choose to pay for the order
     Then a payment summary is given with as merchant <merchant>, description <description>, reference <reference> and amount <amount>
     And the following payment options are given:
-      | payment         |
-      | Visa/Mastercard |
-      | Bancontact      |
+      | payment             |
+      | Visa / MasterCard   |
+      | Bancontact          |
 
     Examples:
-      | ordernumber | amount  | merchant  | description      | reference       |
-      | 1           | 15.00   | UCLL      | Order number 1   | 000/0000/00101  |
-      | 99          | 30.00   | UCLL      | Order number 99  | 000/0000/09902  |
+      | ordernumber | amount  | merchant  | description      | reference        |
+      | 1           | 15.00   | UCLL      | Order number 1   | '000/0000/00101' |
+      | 99          | 30.00   | UCLL      | Order number 99  | '000/0000/09902' |
 
   Scenario: Cannot generate payment summary for an order that does not exist
     Given no orders
